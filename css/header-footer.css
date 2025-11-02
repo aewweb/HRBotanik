@@ -26,7 +26,7 @@
 /* Десктоп: 3 колонки (логотип | меню | кнопки) */
 .header-inner {
   display: grid;
-  grid-template-columns: 100px 1fr 0px clamp(400px, 20vw, 600px); /* logo | center nav | right */
+  grid-template-columns: 200px 1fr 0px clamp(400px, 20vw, 600px); /* logo | center nav | right */
   align-items: center;
   height: var(--header-height);
   padding: 0 10px;
@@ -64,17 +64,29 @@
   display: flex;
   align-items: baseline;
   gap: 6px;
-  color: var(--accent);
   text-decoration: none;
-  font-size: 18px;
+  align-items: center;   /* выравнивание по центру по вертикали */
+  height: 100%;          /* растягиваем на всю высоту шапки */
 }
-.logo strong {
-  font-size: 20px;
-}
+
 .logo-img {
   height: 90px;
   width: auto;
   display: block;
+}
+
+.logo-text {
+  font-family: "Montserrat";
+  font-size: 3rem;
+  font-weight: 700;
+  color: black; /* чтобы было видно на фоне шапки */
+  letter-spacing: 1px;
+}
+
+/* Hover‑эффект */
+.logo:hover .logo-text {
+  color: var(--maincolor);   /* подсветка фирменным цветом */
+  transform: translateY(-2px); /* лёгкий подъём текста */
 }
 
 /* навигация desktop */
@@ -85,7 +97,7 @@
 }
 .nav-list {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -104,6 +116,7 @@
   border-radius: 6px;
   font-weight: 500;
   transition: color 0.18s ease;
+  font-size: 1.2rem;
 }
 
 .nav-link:hover {
@@ -572,6 +585,9 @@
   }
   .logo-img {
     height: 50px;
+  }
+  .logo-text {
+    display: none;
   }
 }
 

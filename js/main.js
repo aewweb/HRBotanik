@@ -60,20 +60,19 @@ document.addEventListener("DOMContentLoaded", () => {
     activateTab(nextIndex);
   });
 
-
   const carousel = document.getElementById('carousel');
   const cards = document.querySelectorAll('.case-card');
   const prevBtn = document.getElementById('prevCase');
   const next = document.getElementById('nextCase');
   const dotsContainer = document.getElementById('carouselDots');
-
+  
   let currentIndex = 0;
   let visibleCards = window.innerWidth < 768 ? 1 : 3;
-
+  
   function getMaxIndex() {
     return Math.max(0, cards.length - visibleCards);
   }
-
+  
   function updateCarousel() {
     const cardWidth = cards[0].offsetWidth + 20; // card + gap
     carousel.scrollTo({
@@ -82,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     updateDots();
   }
-
+  
   function updateDots() {
     dotsContainer.innerHTML = '';
     const totalSteps = getMaxIndex() + 1;
@@ -90,60 +89,70 @@ document.addEventListener("DOMContentLoaded", () => {
       const dot = document.createElement('div');
       dot.classList.add('dot');
       if (i === currentIndex) dot.classList.add('active');
+  
+      // 👇 Добавляем обработчик клика на точку
+      dot.addEventListener('click', () => {
+        currentIndex = i;
+        updateCarousel();
+      });
+  
       dotsContainer.appendChild(dot);
     }
   }
-
-  next.addEventListener('click', () => {
-    if (currentIndex < getMaxIndex()) currentIndex++;
-    updateCarousel();
-  });
-
+  
+  // 👈 Зацикливание влево
   prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) currentIndex--;
+    currentIndex = currentIndex > 0 ? currentIndex - 1 : getMaxIndex();
     updateCarousel();
   });
-
+  
+  // 👉 Зацикливание вправо
+  next.addEventListener('click', () => {
+    currentIndex = currentIndex < getMaxIndex() ? currentIndex + 1 : 0;
+    updateCarousel();
+  });
+  
+  // 📱 Адаптация при ресайзе
   window.addEventListener('resize', () => {
     visibleCards = window.innerWidth < 768 ? 1 : 3;
     currentIndex = 0;
     updateCarousel();
   });
-
-  // 👇 Добавим свайп на мобильных
+  
+  // 📱 Свайп на мобильных
   let startX = 0;
   let endX = 0;
-
+  
   carousel.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
   });
-
+  
   carousel.addEventListener('touchmove', (e) => {
     endX = e.touches[0].clientX;
   });
-
+  
   carousel.addEventListener('touchend', () => {
     const delta = endX - startX;
     if (Math.abs(delta) > 50) {
-      if (delta < 0 && currentIndex < getMaxIndex()) {
-        currentIndex++;
-      } else if (delta > 0 && currentIndex > 0) {
-        currentIndex--;
+      if (delta < 0) {
+        currentIndex = currentIndex < getMaxIndex() ? currentIndex + 1 : 0;
+      } else {
+        currentIndex = currentIndex > 0 ? currentIndex - 1 : getMaxIndex();
       }
       updateCarousel();
     }
   });
-
+  
   updateCarousel();
-
+  
   const reviewsCarousel = document.getElementById('reviewsCarousel');
   const reviewCards = document.querySelectorAll('.review-card');
   const prevReview = document.getElementById('prevReview');
   const nextReview = document.getElementById('nextReview');
   const reviewsDots = document.getElementById('reviewsDots');
-
+  
   let reviewIndex = 0;
-
+  
   function updateReviews() {
     const cardWidth = reviewCards[0].offsetWidth + 20;
     reviewsCarousel.scrollTo({
@@ -151,6 +160,25 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: 'smooth'
     });
     updateReviewDots();
+    animateReviewWords();
+  }
+  
+  function animateReviewWords() {
+    const activeCard = reviewCards[reviewIndex];
+    const paragraphs = activeCard.querySelectorAll('p');
+  
+    paragraphs.forEach(p => {
+      const words = p.textContent.trim().split(' ');
+      p.innerHTML = ''; // очистить
+  
+      words.forEach((word, i) => {
+        const span = document.createElement('span');
+        span.className = 'word';
+        span.textContent = word + ' ';
+        span.style.animationDelay = `${i * 50}ms`;
+        p.appendChild(span);
+      });
+    });
   }
 
   function updateReviewDots() {
@@ -159,46 +187,55 @@ document.addEventListener("DOMContentLoaded", () => {
       const dot = document.createElement('div');
       dot.classList.add('dot');
       if (i === reviewIndex) dot.classList.add('active');
+  
+      // 👇 Добавляем обработчик клика на точку
+      dot.addEventListener('click', () => {
+        reviewIndex = i;
+        updateReviews();
+      });
+  
       reviewsDots.appendChild(dot);
     }
   }
-
+  
+  // 👉 Зацикливание вправо
   nextReview.addEventListener('click', () => {
-    if (reviewIndex < reviewCards.length - 1) reviewIndex++;
+    reviewIndex = (reviewIndex + 1) % reviewCards.length;
     updateReviews();
   });
-
+  
+  // 👈 Зацикливание влево
   prevReview.addEventListener('click', () => {
-    if (reviewIndex > 0) reviewIndex--;
+    reviewIndex = (reviewIndex - 1 + reviewCards.length) % reviewCards.length;
     updateReviews();
   });
-
-  // Swipe support for mobile
+  
+  // 📱 Свайп на мобильных
   let startXR = 0;
   let endXR = 0;
-
+  
   reviewsCarousel.addEventListener('touchstart', (e) => {
     startXR = e.touches[0].clientX;
   });
-
+  
   reviewsCarousel.addEventListener('touchmove', (e) => {
     endXR = e.touches[0].clientX;
   });
-
+  
   reviewsCarousel.addEventListener('touchend', () => {
     const delta = endXR - startXR;
     if (Math.abs(delta) > 50) {
-      if (delta < 0 && reviewIndex < reviewCards.length - 1) {
-        reviewIndex++;
-      } else if (delta > 0 && reviewIndex > 0) {
-        reviewIndex--;
+      if (delta < 0) {
+        reviewIndex = (reviewIndex + 1) % reviewCards.length;
+      } else {
+        reviewIndex = (reviewIndex - 1 + reviewCards.length) % reviewCards.length;
       }
       updateReviews();
     }
   });
-
+  
   updateReviews();
-
+  
 
 const TOKEN = "8135815901:AAGvHe4zyh-p5Q08B9eAATdEsi5aVio8CFE";
 const CHAT_ID = "553356311";
