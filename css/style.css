@@ -1,0 +1,1016 @@
+:root {
+  --accent: #0072ce;
+  --maincolor: #4B6DFE;
+  --maindark: #08015D;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #fff; /* фон под canvas, можно поменять на градиент или темный цвет */
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* --- Overlay для десктопа --- */
+#desktop-overlay {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  height: calc(100% - var(--header-height));
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+  z-index: 2500; /* ниже шапки (3000), выше остальных элементов */
+}
+
+#desktop-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- Hero Section --- */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  
+  background-image: url("../fon1.svg");
+  background-size: cover;       /* растягиваем по ширине/высоте */
+  background-position: center;  /* центрируем */
+  background-repeat: no-repeat; /* не повторяем */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  height: 100%;
+  text-align: left;
+}
+
+.hero-main-title {
+  font-family: "Montserrat";
+  font-size: clamp(2rem, 7vw, 7rem);
+  font-weight: 800;
+  line-height: 1.1;
+  word-break: auto-phrase;
+  hyphens: auto;
+  margin-bottom: 40px;
+  color: white;
+}
+
+/* --- Glass block with blur effect --- */
+.hero-glass-block {
+  position: relative;
+  max-width: 600px;
+  padding: 0;
+  border-radius: 16px;
+  z-index: 1;
+}
+
+.hero-glass-block p {
+  font-family: "Montserrat";
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: white;
+}
+
+/* Цифры */
+.numbers {
+  padding: 50px 0;
+  height: 80vh;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.numbers .hero-main-title {
+  margin: 50px;
+}
+
+.numbers-text {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(2.5rem, 0.9vw + 0.8rem, 3.5rem);
+  line-height: 1.6;
+  color: black;
+  font-weight: 800;
+  margin-bottom: 60px;
+  max-width: 1200px;
+  padding: 0 30px;
+}
+
+.numbers-grid {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+  padding: 0 30px;
+}
+
+.number-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 26%;
+  transition: transform 0.4s ease;
+}
+
+.number-item:hover {
+  transform: translateY(-8px);
+}
+
+.number-item span {
+  font-size: clamp(2rem, 7vw, 7rem);
+  font-weight: 400;
+  color: black;
+  display: block;
+  line-height: 1;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+/* знак "+" сразу отображается */
+.number-item span[data-plus="true"]::after {
+  content: "+";
+  font-size: clamp(2rem, 7vw, 7rem);
+  font-weight: 400;
+  margin-left: 6px;
+  color: black;
+  transform: translateY(-10%);
+}
+
+.number-item.visible span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.number-item p {
+  font-family: "Montserrat";
+  font-size: clamp(1rem, 1.5vw + 0.5rem, 2.5rem);
+  line-height: 1.5;
+  color: #444;
+  margin: 0;
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
+}
+
+.numbers-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 50px;
+}
+
+.numbers-button-wrapper .btn-primary {
+  font-size: 1.8rem;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.numbers-button-wrapper .line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: var(--maincolor);
+}
+
+/* Стек */
+.stek {
+  padding: 0;
+  height: 60vh;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.stek-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* расстояние между строками */
+  margin-top: 30px;
+  padding: 0 30px;
+}
+
+.stek-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 равных колонок */
+  gap: 10%; /* расстояние между картинками */
+  width: 100%;
+}
+
+.stek-row img {
+  width: 100%;
+  max-width: 70px; /* ограничение размера картинки */
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* Сферы */
+.it-spheres {
+  padding: 0;
+  height: 80vh;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.spheres-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.spheres-buttons .btn-primary {
+  font-size: 2.8rem;
+  pointer-events: none; /* делает кнопку некликабельной */
+  user-select: none;
+}
+
+/* --- Вакансии --- */
+.vacancies {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
+  background-image: url("../fon2.png");
+  background-size: cover;       /* растягиваем по ширине/высоте */
+  background-position: center;  /* центрируем */
+  background-repeat: no-repeat; /* не повторяем */
+}
+
+.vacancies .numbers-text {
+  color: white;
+  padding: 0;
+}
+
+/* Кнопка с иконкой */
+.btn-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px; /* расстояние между текстом и иконкой */
+  margin-top: 20px; /* опускаем кнопку ниже */
+}
+
+.btn-with-icon .btn-icon {
+  width: 30px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* tabs section */
+.tabs-section {
+  margin: 0 auto;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  background-color: var(--maindark);
+}
+
+.tabs-section .numbers-text {
+  color: white;
+  padding: 0;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1 1 auto;
+  font-family: "Montserrat";
+  font-size: 1.5rem;
+  padding: 12px 16px;
+  background-color: white;
+  border: none;
+  max-width: 300px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tab:hover {
+  background-color: #e0e0e0;
+}
+
+.tab.active {
+  background-color: var(--maincolor);
+  color: white;
+}
+
+.tab-wrapper {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+.tab-content {
+  flex: 1;
+  display: none;
+  padding: 20px;
+  background-color: white;
+  border-radius: 16px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tab-content h3 {
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(2.5rem, 0.9vw + 0.8rem, 3.5rem);
+  line-height: 1.6;
+  color: black;
+  font-weight: 800;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.tab-content p {
+  font-family: "Montserrat";
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: black;
+}
+
+.next-tab-button {
+  margin-left: 20px;
+  padding: 0 20px;
+  background-color: var(--maincolor);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.next-tab-button:hover {
+  background-color: #0056b3;
+}
+
+.grid-section {
+  background-color: var(--maindark);
+  padding: 40px 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid-item {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 200px;
+}
+
+.image-wrapper {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 100px;
+  height: 100px;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.text-wrapper {
+  font-family: "Montserrat";
+  font-size: 1.5rem;
+  margin-top: 90px;
+  color: black;
+}
+
+/* case section */
+.cases-section {
+  background-color: var(--maincolor);
+  padding: 40px 20px;
+  color: white;
+}
+
+.cases-section .numbers-text {
+  color: white;
+}
+
+.cases-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.arrow {
+  background-color: var(--maincolor);
+  color: var(--maindark);
+  border: none;
+  font-size: 4rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.cases-carousel {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.case-card {
+  background-color: var(--maindark);
+  color: white;
+  border-radius: 16px;
+  padding: 20px;
+  flex: 0 0 calc(100% / 3 - 14px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.case-card img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.case-card h3 {
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(2.5rem, 0.9vw + 0.8rem, 3.5rem);
+  line-height: 1.6;
+  color: white;
+  font-weight: 800;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.case-card p {
+  font-family: "Montserrat";
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.carousel-dots {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.carousel-dots .dot {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  opacity: 0.4;
+  border-radius: 50%;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-dots .dot.active {
+  opacity: 1;
+}
+
+/* reviews section */
+.reviews-section {
+  background-color: white;
+  padding: 40px 20px;
+}
+
+.reviews-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.reviews-section .arrow {
+  background-color: white;
+}
+
+.reviews-carousel {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+.review-card {
+  flex: 0 0 100%;
+  background-color: #ffffff;
+  border: 4px solid var(--maincolor);
+  border-radius: 16px;
+  padding: 30px;
+  box-sizing: border-box;
+  font-family: "Montserrat";
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: black;
+  transition: transform 0.3s ease;
+}
+
+.reviews-section .carousel-dots {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.reviews-section .carousel-dots .dot {
+  width: 12px;
+  height: 12px;
+  background-color: var(--maindark);
+  opacity: 0.3;
+  border-radius: 50%;
+  transition: opacity 0.3s ease;
+}
+
+.reviews-section .carousel-dots .dot.active {
+  opacity: 1;
+}
+
+/* contact section */
+.contact-section {
+  background-color: var(--maincolor);
+  padding: 60px 20px;
+  color: white;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  max-width: 100%;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.contact-left {
+  flex: 2;
+  display: flex;
+  align-items: center;
+}
+
+.contact-left h2 {
+  font-size: 3rem;
+  line-height: 1.4;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+}
+
+.contact-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+#emailInput {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+  font-size: 1.2rem;
+  padding: 12px 0;
+  font-family: "Montserrat", sans-serif;
+  outline: none;
+  width: 100%;
+  transition: all 0.3s ease;
+  border-radius: 0;
+}
+
+#emailInput::placeholder {
+  color: white;
+  opacity: 0.7;
+}
+
+/* При вводе — белый фон и скругление */
+#emailInput:focus,
+#emailInput:not(:placeholder-shown) {
+  background-color: white;
+  color: black;
+  border-radius: 15px;
+  padding: 15px 10px;
+  border: none;
+}
+
+button[type="submit"] {
+  background-color: white;
+  color: black;
+  font-size: 1.4rem;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: "Montserrat";
+}
+
+button[type="submit"]:hover {
+  background-color: #f0f0f0;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Чекбокс — кастомный */
+.checkbox-wrapper input[type="checkbox"] {
+  appearance: none;
+  width: 26px;
+  height: 21px;
+  border: 2px solid white;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  transition: background-color 0.3s ease;
+}
+
+/* Галочка — синяя, фон белый */
+.checkbox-wrapper input[type="checkbox"]:checked {
+  background-color: white;
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 6px;
+  height: 12px;
+  border: solid var(--maindark);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Модальное окно */
+.modal {
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: #fff; /* белый фон */
+  color: #000; /* чёрный текст */
+  padding: 30px 40px;
+  border: 3px solid var(--maincolor); /* рамка цвета maincolor */
+  border-radius: 12px;
+  width: 60%;
+  max-width: 400px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-family: 'Montserrat', sans-serif;
+  animation: slideIn 0.3s ease;
+  position: relative;
+}
+
+/* Кнопка закрытия */
+.modal-close {
+  color: var(--maincolor);
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: var(--maindark);
+}
+
+/* Анимация появления */
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* --- Adaptive styles --- */
+@media (max-width: 1024px) {
+  .hero {
+    height: 50vh;
+    justify-content: start;
+    background-position: -400px center;
+  }
+
+  .hero-content {
+    justify-content: flex-start; /* убираем центрирование по вертикали */
+    padding-top: calc(var(--header-height, 72px) + 40px); /* отступ от шапки */
+    height: auto; /* больше не растягиваем на всю высоту */
+  }
+
+  .hero-main-title {
+    font-size: clamp(
+      1.2rem,
+      8vw,
+      2.5rem
+    ); /* больше на мобилке, но уменьшается для маленьких экранов */
+    margin-bottom: 35px; /* больше отступа до блока */
+    font-weight: 600;
+  }
+
+  .hero-glass-block p {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .btn-primary {
+    text-align: center;
+  }
+
+  .numbers-button-wrapper {
+    gap: 10px;
+  }
+
+  .numbers-button-wrapper .btn-primary {
+    font-size: 1.2rem;
+  }
+
+  .hero-main-title {
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  #hero-canvas {
+    top: 72px;
+    pointer-events: none;
+  }
+
+  .numbers {
+    padding: 0px 5px;
+    height: auto;
+  }
+
+  .numbers-grid {
+    flex-direction: column;
+    gap: 50px;
+    padding: 0 30px;
+  }
+
+  .number-item{
+    max-width: 100%;
+  }
+
+  .number-item span {
+    font-size: clamp(4rem, 12vw, 5rem);
+  }
+
+  .number-item p {
+    font-size: clamp(1rem, 4vw, 1.6rem);
+  }
+
+  .numbers-text {
+    font-size: clamp(1.5rem, 3.5vw, 1.8rem);
+    margin: 20px 0px 20px;
+  }
+
+  .numbers .hero-main-title {
+    font-size: clamp(2rem, 6vw, 4rem);
+    margin-bottom: 20px;
+  }
+  
+  .stek{
+    height: 40vh;
+  }
+
+  .it-spheres{
+    height: 60vh;
+  }
+
+  .spheres-buttons {
+    gap: 5px;
+    margin: 0;
+  }
+
+  .spheres-buttons .btn-primary {
+    font-size: 1.0rem;
+  }
+
+  .vacancies {
+    height: 50vh;
+  }
+
+  .vacancies .numbers-text {
+    margin: 0;
+  }
+
+  .vacancies .hero-content{
+    padding-top: 0;
+  }
+
+  .tab {
+    font-size: 1.0rem;
+  }
+
+  .tab-content.active{
+    max-width: 100%;
+  }
+
+  .next-tab-button {
+    display: none;
+  }
+
+  .tab-content h3 {
+    margin-top: 0;
+    font-size: clamp(1.5rem, 3.5vw, 1.8rem);
+  }
+
+  .tab-content p {
+    margin-top: 0;
+    font-size: clamp(1.0rem, 3.5vw, 1.2rem);
+    margin-bottom: 10px;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .grid-item {
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .image-wrapper {
+    width: 75px;
+    height: 75px;
+    top: 12px;
+    right: 12px;
+  }
+
+  .text-wrapper {
+    margin-top: 70px;
+    font-size: 1.2rem;
+  }
+
+  .text-wrapper p {
+    margin: 0;
+  }
+
+  .case-card {
+    flex: 0 0 100%;
+  }
+
+  .arrow {
+    display: none;
+  }
+
+  .numbers-text {
+    font-size: 24px;
+  }
+
+  .case-card h3 {
+    margin-top: 0;
+    font-size: clamp(1.5rem, 3.5vw, 1.8rem);
+  }
+
+  .case-card p {
+    margin-top: 0;
+    font-size: clamp(1.0rem, 3.5vw, 1.2rem);
+    margin-bottom: 10px;
+  }
+
+  .reviews-section .arrow {
+    display: none;
+  }
+
+  .review-card {
+    font-size: 1.2rem;
+    padding: 10px;
+  }
+
+  .contact-section {
+    padding: 20px 20px;
+  }
+
+  .contact-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-left {
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .contact-left h2 {
+    font-size: 2rem;
+  }
+
+  .contact-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #contactForm {
+    max-width: 100%;
+  }
+
+  #emailInput,
+  button[type="submit"] {
+    font-size: 1rem;
+    padding: 14px;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 20px;
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,98 @@
+<header class="site-header" role="banner">
+  <div class="header-inner">
+    <div class="header-left">
+      <a class="logo" href="index.html" aria-label="HRBotanik — на главную">
+        <img src="logo.svg" alt="HRBotanik логотип" class="logo-img" />
+      </a>
+    </div>
+
+    <div class="header-center">
+      <nav
+        class="nav"
+        id="main-nav"
+        role="navigation"
+        aria-label="Главное меню"
+      >
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="nav-link" href="#grid">Кандидатам</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tabs">IT Рекрутинг под ключ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#numbers">Подбор Топ-менеджмента</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tabs">IT аутстаффинг</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Пробный найм с выкупом </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- бургер: две линии -->
+    <button
+      id="burger"
+      class="burger"
+      aria-label="Открыть меню"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="burger-line top"></span>
+      <span class="burger-line bottom"></span>
+    </button>
+
+    <div class="header-right">
+      <div class="header-actions">
+        <a class="phone" href="tel:+7456898989">+7(456)89-89-89</a>
+        <a class="btn-primary" href="#contact">Оставить заявку</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu вынесено ВНЕ header -->
+<div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <ul class="mobile-nav-list">
+      <li class="nav-item">
+        <a class="nav-link" href="#grid">Кандидатам</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#tabs">IT Рекрутинг под ключ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#numbers">Подбор Топ-менеджмента</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#tabs">IT аутстаффинг</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contact">Пробный найм с выкупом </a>
+      </li>
+    </ul>
+
+    <!-- Контакты внизу меню -->
+    <div class="mobile-contacts">
+      <p class="label">Контакты:</p>
+      <p class="value">+375 (17) 000-00-00</p>
+      <p class="value"><a href="mailto:example@mail.com">example@mail.com</a></p>
+
+      <p class="label">Адрес:</p>
+      <p class="value">г. Минск, ул. Примерная, 10</p>
+
+      <p class="label">Время работы</p>
+      <p class="value">Пн–Пт: 9:00 – 18:00</p>
+    </div>
+  </div>
+</div>
+
+<div
+  id="menu-overlay"
+  class="menu-overlay"
+  aria-hidden="true"
+  tabindex="-1"
+></div>
