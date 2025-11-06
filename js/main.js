@@ -1,4 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.btn-with-icon').forEach(button => {
+    const img = button.querySelector('.btn-icon');
+    const originalSrc = img.src;
+    const hoverSrc = img.getAttribute('data-hover');
+  
+    button.addEventListener('mouseenter', () => {
+      img.src = hoverSrc;
+    });
+  
+    button.addEventListener('mouseleave', () => {
+      img.src = originalSrc;
+    });
+  });
+ 
+
   const counters = document.querySelectorAll(".count");
   const items = document.querySelectorAll(".number-item");
   let triggered = false;
@@ -37,28 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   observer.observe(document.querySelector(".numbers"));
 });
-
-  const tabs = document.querySelectorAll('.tab');
-  const contents = document.querySelectorAll('.tab-content');
-  const nextBtn = document.getElementById('nextTabBtn');
-
-  function activateTab(index) {
-    tabs.forEach(t => t.classList.remove('active'));
-    contents.forEach(c => c.classList.remove('active'));
-
-    tabs[index].classList.add('active');
-    contents[index].classList.add('active');
-  }
-
-  tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => activateTab(index));
-  });
-
-  nextBtn.addEventListener('click', () => {
-    const currentIndex = [...tabs].findIndex(t => t.classList.contains('active'));
-    const nextIndex = (currentIndex + 1) % tabs.length;
-    activateTab(nextIndex);
-  });
 
   const carousel = document.getElementById('carousel');
   const cards = document.querySelectorAll('.case-card');

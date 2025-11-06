@@ -1,6 +1,6 @@
 :root {
   --header-height: 100px;
-  --accent: #0072ce;
+  --window-width: 1200px;
   --maincolor: #4B6DFE;
   --maindark: #08015D;  
 }
@@ -20,16 +20,19 @@
   z-index: 3000; /* самый высокий: шапка всегда поверх затемнения и меню */
   background: #fff;
   backdrop-filter: blur(4px);
-  border-bottom: 1px dashed black;
+  border-bottom: 1px solid black;
 }
 
-/* Десктоп: 3 колонки (логотип | меню | кнопки) */
 .header-inner {
   display: grid;
-  grid-template-columns: 200px 1fr 0px clamp(400px, 20vw, 600px); /* logo | center nav | right */
+  grid-template-columns: 250px 1fr 0px 250px; /* logo | center nav | right */
   align-items: center;
   height: var(--header-height);
-  padding: 0 10px;
+
+  max-width: 1200px;       /* ограничение ширины */
+  margin: 0 auto;          /* центрирование по горизонтали */
+  width: 100%;             /* чтобы занимать всю доступную ширину до 1200px */
+  box-sizing: border-box;  /* чтобы padding не выходил за пределы */
 }
 
 /* Мобильные: 4 колонки (логотип | центр | бургер | кнопки) */
@@ -45,8 +48,42 @@
 }
 .header-center {
   grid-column: 2;
-  justify-self: center;
-  left: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.header-top-row {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.9rem;
+}
+
+.contact-info {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-family: "Montserrat";
+}
+
+.contact-link {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+  color: var(--accent);
+}
+
+.divider {
+  color: #999;
+}
+
+.header-bottom-row {
+  display: flex;
+  justify-content: center;
 }
 .burger {
   grid-column: 3;
@@ -70,7 +107,7 @@
 }
 
 .logo-img {
-  height: 90px;
+  height: var(--header-height);
   width: auto;
   display: block;
 }
@@ -301,16 +338,18 @@
 .btn-primary {
   padding: 15px 25px;
   font-family: "Montserrat";
-  background-color: #4B6DFE;
+  background-color: var(--maincolor);
   color: #fff;
+  border-color: var(--maincolor) !important;
+  border: solid;
   text-decoration: none;
   border-radius: 15px;
   font-size: 1.4rem;
-  transition: background-color 0.3s ease;
 }
 
-.btn-primary:hover {
-  background-color: #0072ce;
+.btn-primary:hover {  
+  background-color: #fff;
+  color: var(--maincolor);
 }
 
 /* --- Burger (mobile) --- */
@@ -485,7 +524,7 @@
 }
 
 .site-footer {
-  background-color: var(--maincolor);
+  background-color: var(--maindark);
   color: white;
   font-family: "Montserrat", sans-serif;
   padding: 0px 20px 10px 0px;
@@ -497,6 +536,11 @@
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 20px;
+
+  max-width: var(--window-width);       /* ограничение ширины */
+  margin: 0 auto;          /* центрирование по горизонтали */
+  width: 100%;             /* чтобы занимать всю доступную ширину до 1200px */
+  box-sizing: border-box;  /* чтобы padding не выходил за пределы */  
 }
 
 .footer-logo img {
@@ -548,6 +592,10 @@
     padding: 10px;
   }
 
+  .header-actions .btn-primary {
+    display: none;
+  }
+
   .footer-top {
     flex-direction: column;
     align-items: center;
@@ -583,9 +631,7 @@
   .header-center {
     justify-self: start;
   }
-  .logo-img {
-    height: 50px;
-  }
+  
   .logo-text {
     display: none;
   }
