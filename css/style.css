@@ -131,7 +131,7 @@ body {
   font-size: clamp(2.5rem, 0.9vw + 0.8rem, 3.5rem);
   line-height: 1.6;
   color: black;
-  font-weight: 800;
+  font-weight: bold;
   margin: 30px 0;
   max-width: var(--window-width);
 }
@@ -777,100 +777,6 @@ body {
   justify-content: flex-end;
 }
 
-#contactForm {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  max-width: 400px;
-}
-
-#emailInput {
-  background-color: transparent;
-  border: none;
-  border-bottom: 2px solid white;
-  color: white;
-  font-size: 1.2rem;
-  padding: 12px 0;
-  font-family: "Montserrat", sans-serif;
-  outline: none;
-  width: 100%;
-  transition: all 0.3s ease;
-  border-radius: 0;
-}
-
-#emailInput::placeholder {
-  color: white;
-  opacity: 0.7;
-}
-
-/* При вводе — белый фон и скругление */
-#emailInput:focus,
-#emailInput:not(:placeholder-shown) {
-  background-color: white;
-  color: black;
-  border-radius: 15px;
-  padding: 15px 10px;
-  border: none;
-}
-
-button[type="submit"] {
-  background-color: white;
-  color: black;
-  font-size: 1.4rem;
-  padding: 15px 25px;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-family: "Montserrat";
-}
-
-button[type="submit"]:hover {
-  background-color: #f0f0f0;
-}
-
-.checkbox-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.9rem;
-  color: white;
-  font-family: "Montserrat", sans-serif;
-}
-
-/* Чекбокс — кастомный */
-.checkbox-wrapper input[type="checkbox"] {
-  appearance: none;
-  width: 26px;
-  height: 21px;
-  border: 2px solid white;
-  border-radius: 4px;
-  background-color: transparent;
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  transition: background-color 0.3s ease;
-}
-
-/* Галочка — синяя, фон белый */
-.checkbox-wrapper input[type="checkbox"]:checked {
-  background-color: white;
-}
-
-.checkbox-wrapper input[type="checkbox"]:checked::after {
-  content: "";
-  position: absolute;
-  left: 4px;
-  top: 1px;
-  width: 6px;
-  height: 12px;
-  border: solid var(--maindark);
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
 /* Кнопки контактов */
 .contact-buttons {
   display: flex;
@@ -909,61 +815,6 @@ button[type="submit"]:hover {
   width: 40px;
   height: 40px;
   object-fit: contain;
-}
-
-/* Модальное окно */
-.modal {
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-content {
-  background-color: #fff; /* белый фон */
-  color: #000; /* чёрный текст */
-  padding: 30px 40px;
-  border: 3px solid var(--maincolor); /* рамка цвета maincolor */
-  border-radius: 12px;
-  width: 60%;
-  max-width: 400px;
-  text-align: center;
-  font-size: 1.4rem;
-  font-family: 'Montserrat', sans-serif;
-  animation: slideIn 0.3s ease;
-  position: relative;
-}
-
-/* Кнопка закрытия */
-.modal-close {
-  color: var(--maincolor);
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.modal-close:hover {
-  color: var(--maindark);
-}
-
-/* Анимация появления */
-@keyframes slideIn {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 /* --- Adaptive styles --- */
@@ -1201,19 +1052,4 @@ button[type="submit"]:hover {
     justify-content: center;
   }
 
-  #contactForm {
-    max-width: 100%;
-  }
-
-  #emailInput,
-  button[type="submit"] {
-    font-size: 1rem;
-    padding: 14px;
-  }
-
-  .modal-content {
-    width: 90%;
-    padding: 20px;
-    font-size: 1.2rem;
-  }
 }

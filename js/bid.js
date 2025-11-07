@@ -3,19 +3,44 @@ const CHAT_ID = "553356311";
 const URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
 
 const form = document.getElementById('contactForm');
-const emailInput = document.getElementById('emailInput');
-const consentCheckbox = document.getElementById('consentCheckbox');
 const submitBtn = form.querySelector('button[type="submit"]');
 const successModal = document.getElementById('successModal');
+
+// Поля формы
+const nameInput = form.querySelector('input[placeholder="Ваше имя"]');
+const phoneInput = form.querySelector('input[placeholder="Телефон"]');
+const emailInput = document.getElementById('emailInput');
+const telegramInput = form.querySelector('input[placeholder="Телеграм"]');
+const commentInput = form.querySelector('textarea[placeholder="Комментарий"]');
+const contactMethodSelect = form.querySelector('select');
+const consentCheckbox = document.getElementById('consentCheckbox');
+const consentMarketing = document.getElementById('consentMarketing');
+
+// Маска для телефона (формат: +7 (___) ___-__-__)
+phoneInput.addEventListener('input', () => {
+  let value = phoneInput.value.replace(/\D/g, '');
+  if (value.startsWith('8')) value = '7' + value.slice(1);
+  if (!value.startsWith('7')) value = '7' + value;
+
+  const formatted = `+${value.slice(0, 1)} (${value.slice(1, 4)}${value.length >= 4 ? ')' : ''} ${value.slice(4, 7)}${value.length >= 7 ? '-' : ''}${value.slice(7, 9)}${value.length >= 9 ? '-' : ''}${value.slice(9, 11)}`;
+  phoneInput.value = formatted.trim();
+});
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
+  // Сбор данных
+  const name = nameInput.value.trim();
+  const phone = phoneInput.value.trim();
   const email = emailInput.value.trim();
+  const telegram = telegramInput.value.trim();
+  const comment = commentInput.value.trim();
+  const contactMethod = contactMethodSelect.value;
   const consent = consentCheckbox.checked;
 
-  if (!email || !consent) {
-    alert("Пожалуйста, введите email и подтвердите согласие.");
+  // Валидация
+  if (!name || !phone || !email || !consent) {
+    alert("Пожалуйста, заполните обязательные поля и подтвердите согласие.");
     return;
   }
 
@@ -25,6 +50,26 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
+  const phoneDigits = phone.replace(/\D/g, '');
+  if (phoneDigits.length < 11) {
+    alert("Введите корректный номер телефона.");
+    return;
+  }
+
+  // Формирование текста заявки
+  const message = `
+📩 Новая заявка:
+👤 Имя: ${name}
+📞 Телефон: ${phone}
+📧 Email: ${email}
+💬 Телеграм: ${telegram || '—'}
+📝 Комментарий: ${comment || '—'}
+📍 Предпочтительный способ связи: ${contactMethod}
+✅ Согласие на обработку: ${consent ? 'Да' : 'Нет'}
+📢 Согласие на маркетинг: ${consentMarketing.checked ? 'Да' : 'Нет'}
+  `;
+
+  // Отправка
   submitBtn.disabled = true;
   submitBtn.textContent = 'Отправка...';
 
@@ -34,7 +79,7 @@ form.addEventListener('submit', async (e) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_id: CHAT_ID,
-        text: `Новая заявка: ${email}`
+        text: message
       })
     });
 
@@ -50,13 +95,7 @@ form.addEventListener('submit', async (e) => {
     successModal.style.display = 'flex';
 
     const closeBtn = successModal.querySelector('.modal-close');
-
-    // Закрытие по клику на крестик
-    closeBtn.onclick = () => {
-      successModal.style.display = 'none';
-    };
-
-    // Закрытие по клику вне окна
+    closeBtn.onclick = () => successModal.style.display = 'none';
     window.onclick = (event) => {
       if (event.target === successModal) {
         successModal.style.display = 'none';
