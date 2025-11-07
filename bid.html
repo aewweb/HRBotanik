@@ -16,22 +16,59 @@
     <!-- Hero section -->
     <section class="hero">
       <img src="fonbid.png" alt="Фон" class="hero-bg" />
-      <div class="hero-content container">
-        <h1 class="hero-main-title">Вы на шаг ближе<br>к талантам!</h1>
-        <p>Отправьте заявку и наш специалист<br>свяжется с вами в течении 30 минут</p>
-        
-        <div class="contact-buttons">
-          <a class="contact-btn btn-with-icon" href="#tg">
-            <img src="tg.png" data-hover="tg-hover.png" alt="TG" class="btn-icon" />
-            <span>Cвязаться в Telegram</span>
-          </a>
-          <a class="contact-btn btn-with-icon" href="#wa">
-            <img src="wa.png" data-hover="wa-hover.png" alt="WA" class="btn-icon" />
-            <span>Cвязаться в WhatsApp</span>
-          </a>
+    
+      <div class="hero-wrapper container">
+        <!-- Левая часть -->
+        <div class="hero-content">
+          <h1 class="hero-main-title">Вы на шаг ближе<br>к талантам!</h1>
+          <p>Отправьте заявку и наш специалист<br>свяжется с вами в течении 30 минут</p>
+    
+          <div class="contact-buttons">
+            <a class="contact-btn btn-with-icon" href="#tg">
+              <img src="tg.png" data-hover="tg-hover.png" alt="TG" class="btn-icon" />
+              <span>Cвязаться в Telegram</span>
+            </a>
+            <a class="contact-btn btn-with-icon" href="#wa">
+              <img src="wa.png" data-hover="wa-hover.png" alt="WA" class="btn-icon" />
+              <span>Cвязаться в WhatsApp</span>
+            </a>
+          </div>
+        </div>
+    
+        <!-- Правая часть -->
+        <div class="contact-right">
+          <form id="contactForm">
+            <p class="form-note">Пожалуйста, заполните все поля</p>
+    
+            <input type="text" placeholder="Ваше имя" required />
+            <input type="tel" placeholder="Телефон" required />
+            <input type="email" id="emailInput" placeholder="Введите ваш email" required />
+            <input type="text" placeholder="Телеграм" />
+    
+            <textarea placeholder="Комментарий" rows="4"></textarea>
+    
+            <p class="form-note">Как с вами связаться?</p>
+            <select required>
+              <option value="phone" selected>Телефон</option>
+              <option value="email">Email</option>
+              <option value="telegram">Telegram</option>
+            </select>
+    
+            <button type="submit">Отправить заявку</button>
+    
+            <label class="checkbox-wrapper">
+              <input type="checkbox" id="consentCheckbox" required />
+              <span>Я согласен с политикой по обработке персональных данных</span>
+            </label>
+            <label class="checkbox-wrapper">
+              <input type="checkbox" id="consentMarketing" />
+              <span>Я согласен на получение маркетинговых и новостных рассылок</span>
+            </label>
+          </form>
         </div>
       </div>
     </section>
+   
             
     <section class="bid-section" id="bid">
       <div class="bid-container">        
@@ -42,6 +79,14 @@
       </div>
     </section>
     
+      <!-- Модальное окно -->
+      <div id="successModal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <span class="modal-close">&times;</span>
+          <p>Спасибо за заявку!<br>Свяжемся в течение 2 дней.</p>
+        </div>
+      </div>
+
     <!-- Footer -->
     <div id="footer"></div>
 

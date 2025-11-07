@@ -85,7 +85,7 @@ body {
 .hero-main-title {
   font-family: "Montserrat";
   font-size: clamp(2.8rem, 7vw, 3.5rem);
-  font-weight: 800;
+  font-weight: bold;
   line-height: 1.5;
   word-break: auto-phrase;
   hyphens: auto;
