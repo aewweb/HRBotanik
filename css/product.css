@@ -356,13 +356,13 @@ body {
   .hero {
     height: 50vh;
     justify-content: start;
-    background-position: -400px center;
+    background-position: -300px center;
   }
 
   .hero-content {
     justify-content: flex-start; /* убираем центрирование по вертикали */
-    padding-top: calc(var(--header-height, 72px) + 40px); /* отступ от шапки */
     height: auto; /* больше не растягиваем на всю высоту */
+    padding: 10px;
   }
 
   .hero-main-title {
@@ -371,8 +371,19 @@ body {
       8vw,
       2.5rem
     ); /* больше на мобилке, но уменьшается для маленьких экранов */
-    margin-bottom: 35px; /* больше отступа до блока */
+    margin-bottom: 10px; /* больше отступа до блока */
     font-weight: 600;
+    max-width: 100%;
+  }
+
+  .hero-bg {
+    width: auto;
+    height: auto;
+  }
+
+  .hero p {
+    font-size: 1.0rem;
+    margin: 0 0 20px;
   }
 
   .hero-glass-block p {
@@ -380,12 +391,22 @@ body {
     margin: 0;
   }
 
-  .btn-primary {
-    text-align: center;
+  .hero .btn-primary {
+    padding: 15px 10px;
+    font-size: 1.2rem;
   }
 
   .numbers-button-wrapper {
     gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .bid-section{
+    padding: 0;
+  }
+
+  .bid-container {
+    gap: 0;
   }
 
   .numbers-button-wrapper .btn-primary {
@@ -406,13 +427,17 @@ body {
     height: 20px;
   }
 
+  .guarantee-section {
+    padding: 30px 10px;
+  }
+
   .guarantee-container {
     flex-direction: column;
   }
 
   .guarantee-item {
     flex: 1 1 100%;
-    padding: 80px 20px 30px;
+    padding: 50px 10px 10px;
   }
 
   .guarantee-icon {
@@ -420,9 +445,17 @@ body {
     height: 80px;
   }
 
+  .guarantee-icon-wrapper {
+    top: -20px;
+  }
+
   .guarantee-text p,
   .guarantee-text ul {
     font-size: 1rem;
+  }
+
+  .info-toggle-section {
+    padding: 10px 10px 40px;
   }
 
   .toggle-btn {
@@ -430,16 +463,21 @@ body {
   }
 
   .toggle-icon {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 15px;
   }
 
   .toggle-content ul {
     font-size: 1rem;
   }
 
+  .toggle-content ul li{
+    padding-bottom: 10px;
+  }
+
   .toggle-content {
     padding: 20px;
+    margin-top: -20px;
   }
 
 }

@@ -821,29 +821,27 @@ body {
 @media (max-width: 1024px) {
   .hero {
     height: 50vh;
-    justify-content: start;
-    background-position: -400px center;
   }
 
   .hero-content {
     justify-content: flex-start; /* убираем центрирование по вертикали */
-    padding-top: calc(var(--header-height, 72px) + 40px); /* отступ от шапки */
     height: auto; /* больше не растягиваем на всю высоту */
+    padding: 10px;
   }
 
   .hero-main-title {
     font-size: clamp(
-      1.2rem,
+      1.0rem,
       8vw,
-      2.5rem
+      1.5rem
     ); /* больше на мобилке, но уменьшается для маленьких экранов */
     margin-bottom: 35px; /* больше отступа до блока */
     font-weight: 600;
   }
 
-  .hero-glass-block p {
+  .hero .btn-primary {
+    padding: 15px 25px;
     font-size: 1.2rem;
-    margin: 0;
   }
 
   .btn-primary {
@@ -869,7 +867,7 @@ body {
   }
 
   .numbers {
-    padding: 0px 5px;
+    padding: 0px 10px;
     height: auto;
   }
 
@@ -901,22 +899,29 @@ body {
     margin-bottom: 20px;
   }
   
+  .stek {
+    padding: 10px;
+  }
+
+  .stek-grid {
+    gap: 20px;
+  }
+
   .stek-row {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
 
   .stek-item {
-    padding: 16px 8px;
+    padding: 5px;
   }
 
   .stek-item img {
-    max-width: 60px;
-    max-height: 60px;
+    max-height: 100px;
   }
 
   .stek-item p {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 
   .steks-content .numbers-text {
@@ -924,9 +929,18 @@ body {
     margin-left: 0;
   }
 
+  .stek-grid {
+    padding: 10px;
+  }
+
+  .it-spheres {
+    padding: 10px;
+  }
+
   .spheres-buttons {
     gap: 5px;
     margin: 0;
+    padding: 0;
   }
 
   .spheres-buttons .btn-primary {
@@ -934,40 +948,60 @@ body {
     padding: 10px 5px;
   }
 
+  .vacancies-content {
+    padding: 10px;
+  }
+
   .vacancies .numbers-text {
-    margin: 0;
+    max-width: 100%;
+    font-size: 1.8rem;
+  }
+
+  .hero-glass-block p {
+    font-size: 1.0rem;
+    max-width: 70%;
   }
 
   .vacancies .hero-content{
     padding-top: 0;
   }
 
-  .tabs {
-    grid-template-columns: repeat(2, 1fr); /* 2 кнопки в строке */
+  .vacancies .btn-primary {
+    padding: 15px 10px;
+    font-size: 1.2rem;
+    margin: 0px 0px 30px;
   }
 
-  .tab {
-    font-size: 1rem;
-    padding: 10px 12px;
+  .btn-with-icon {
+    gap: 5px;
   }
 
-  .tab-content.active{
-    max-width: 100%;
+  .btn-with-icon .btn-icon {
+    width: 30px;
+    max-height: 20px;
   }
 
-  .next-tab-button {
-    display: none;
+  .tabs-container {
+    padding: 10px;
   }
 
-  .tab-content h3 {
-    margin-top: 0;
-    font-size: clamp(1.5rem, 3.5vw, 1.8rem);
+  .tab-link {
+    padding: 10px;
+    font-size: 1.2rem;
+    height: auto;
+    border-radius: 15px;
   }
 
-  .tab-content p {
-    margin-top: 0;
-    font-size: clamp(1.0rem, 3.5vw, 1.2rem);
-    margin-bottom: 10px;
+  .tabs-grid {
+    grid-template-columns: repeat(1, 1fr); /* 2 кнопки в строке */
+  }
+
+  .tabs-section .numbers-text {
+    margin: 0;
+  }
+
+  .grid-section {
+    padding: 40px 10px;
   }
 
   .grid-container {
@@ -996,6 +1030,10 @@ body {
     margin: 0;
   }
 
+  .cases-section {
+    padding: 10px;
+  }
+
   .case-card {
     flex: 0 0 100%;
   }
@@ -1019,6 +1057,10 @@ body {
     margin-bottom: 10px;
   }
 
+  .reviews-section {
+    padding: 10px;
+  }
+
   .reviews-section .arrow {
     display: none;
   }
@@ -1029,12 +1071,13 @@ body {
   }
 
   .contact-section {
-    padding: 20px 20px;
+    padding: 10px;
   }
 
   .contact-container {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
   }
 
   .contact-left {
@@ -1044,7 +1087,7 @@ body {
   }
 
   .contact-left h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .contact-right {
