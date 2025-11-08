@@ -273,7 +273,7 @@
 .mobile-contacts {
   margin-top: 20px;
   padding-top: 20px;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid grey;
   line-height: 2;
 }
 .mobile-contacts p {
@@ -286,7 +286,8 @@
 }
 .mobile-contacts .value {
   color: #000;
-  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
 }
 
 .site-footer {
@@ -366,6 +367,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 20px;
   }
 
   .footer-logo img {

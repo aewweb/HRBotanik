@@ -244,24 +244,20 @@ body {
 @media (max-width: 1024px) {
   .hero {
     height: 50vh;
-    justify-content: start;
-    background-position: -400px center;
+    background-position: -300px center;
   }
 
   .hero-content {
     justify-content: flex-start; /* убираем центрирование по вертикали */
-    padding-top: calc(var(--header-height, 72px) + 40px); /* отступ от шапки */
     height: auto; /* больше не растягиваем на всю высоту */
+    padding: 10px;
   }
 
   .hero-main-title {
-    font-size: clamp(
-      1.2rem,
-      8vw,
-      2.5rem
-    ); /* больше на мобилке, но уменьшается для маленьких экранов */
+    font-size: clamp(1.2rem, 8vw, 2.5rem); /* больше на мобилке, но уменьшается для маленьких экранов */
     margin-bottom: 35px; /* больше отступа до блока */
     font-weight: 600;
+    max-width: 100%;
   }
 
   .hero-glass-block p {
@@ -273,8 +269,13 @@ body {
     text-align: center;
   }
 
+  .numbers-text{
+    margin: 0;
+  }
+
   .numbers-button-wrapper {
     gap: 10px;
+    margin: 20px 0;
   }
 
   .numbers-button-wrapper .btn-primary {
@@ -286,8 +287,13 @@ body {
     margin-bottom: 20px;
   }
 
+  .vacancies-section {
+    padding: 10px;
+  }
+
   .vacancies-grid {
     grid-template-columns: 1fr; /* одна колонка */
+    gap: 10px;
   }
 
   .vacancy-title {
@@ -305,6 +311,14 @@ body {
   .btn-secondary-icon {
     width: 20px;
     height: 20px;
+  }
+
+  .bid-section{
+    padding: 0;
+  }
+
+  .bid-container {
+    gap: 0;
   }
 
 }

@@ -227,7 +227,6 @@ body {
   padding: 10px 15px;
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
-  border: none;
 }
 
 /* Кнопка */
@@ -384,15 +383,19 @@ button[type="submit"]:hover {
 /* --- Adaptive styles --- */
 @media (max-width: 1024px) {
   .hero {
-    height: 50vh;
     justify-content: start;
     background-position: -400px center;
   }
 
   .hero-content {
     justify-content: flex-start; /* убираем центрирование по вертикали */
-    padding-top: calc(var(--header-height, 72px) + 40px); /* отступ от шапки */
     height: auto; /* больше не растягиваем на всю высоту */
+    padding: 0;
+    align-items: normal;
+  }
+
+  .hero-bg {
+    width: 0;
   }
 
   .hero-main-title {
@@ -433,13 +436,17 @@ button[type="submit"]:hover {
   
   .hero-wrapper {
     flex-direction: column;
-    gap: 40px;
+    gap: 0;
+    padding: 0 10px 30px;
   }
 
   .hero-content,
   .contact-right {
     width: 100%;
-    align-items: center;
+  }
+
+  .contact-right p {
+    color: black;
   }
 
   #contactForm {
@@ -448,13 +455,34 @@ button[type="submit"]:hover {
 
   #emailInput,
   button[type="submit"] {
-    font-size: 1rem;
-    padding: 14px;
+    font-size: 1.2rem;
+    padding: 10px;
+  }
+
+  .checkbox-wrapper{
+    color: black;
+  }
+
+  .checkbox-wrapper input[type="checkbox"] {
+    border: 2px solid black;
+    width: 25px;
+    height: 18px;
+  }
+
+  .checkbox-wrapper input[type="checkbox"]:checked::after{
+    left: 4px;
+    top: -1px;
+    width: 5px;
+    height: 12px;
   }
 
   .modal-content {
     width: 90%;
     padding: 20px;
     font-size: 1.2rem;
+  }
+
+  .bid-section {
+    padding: 20px 0px;
   }
 }
