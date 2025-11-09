@@ -1,6 +1,6 @@
 :root {
   --maincolor: #4B6DFE;
-  --maindark: #08015D;
+  --maindark: #272168;
   --window-width: 1200px;
 }
 
@@ -321,7 +321,7 @@ body {
 /* Контент */
 .toggle-content {
   display: none;
-  padding: 100px 100px 20px;
+  padding: 100px 50px 20px;
   border-radius: 15px;
   width: 100%;
   max-width: var(--window-width);

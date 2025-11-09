@@ -1,6 +1,6 @@
 :root {
   --maincolor: #4B6DFE;
-  --maindark: #08015D;
+  --maindark: #272168;
   --window-width: 1200px;
 }
 
@@ -385,6 +385,11 @@ button[type="submit"]:hover {
   .hero {
     justify-content: start;
     background-position: -400px center;
+    background-color: var(--maindark);
+  }
+
+  .hero p{
+    color: white;
   }
 
   .hero-content {
@@ -395,7 +400,7 @@ button[type="submit"]:hover {
   }
 
   .hero-bg {
-    width: 0;
+    display: none;
   }
 
   .hero-main-title {
@@ -406,6 +411,7 @@ button[type="submit"]:hover {
     ); /* больше на мобилке, но уменьшается для маленьких экранов */
     margin-bottom: 35px; /* больше отступа до блока */
     font-weight: 600;
+    color: white;
   }
 
   .btn-primary {
@@ -445,10 +451,6 @@ button[type="submit"]:hover {
     width: 100%;
   }
 
-  .contact-right p {
-    color: black;
-  }
-
   #contactForm {
     max-width: 100%;
   }
@@ -459,12 +461,7 @@ button[type="submit"]:hover {
     padding: 10px;
   }
 
-  .checkbox-wrapper{
-    color: black;
-  }
-
   .checkbox-wrapper input[type="checkbox"] {
-    border: 2px solid black;
     width: 25px;
     height: 18px;
   }

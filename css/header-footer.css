@@ -2,7 +2,7 @@
   --header-height: 100px;
   --window-width: 1200px;
   --maincolor: #4B6DFE;
-  --maindark: #08015D;  
+  --maindark: #272168;  
 }
 
 /* общий сброс */
@@ -242,6 +242,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: var(--maindark);
 }
 
 /* список */
@@ -267,25 +268,35 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  color: white;
 }
 
 /* блок контактов */
 .mobile-contacts {
   margin-top: 20px;
   padding-top: 20px;
-  border-top: 1px solid grey;
+  border-top: 1px solid var(--maincolor);
   line-height: 2;
 }
 .mobile-contacts p {
   margin: 6px 0;
+  color: white;
 }
+
+.mobile-contacts .value a{
+  color: white;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+}
+
 .mobile-contacts .label {
-  color: #888;
+  color: var(--maincolor);
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
 .mobile-contacts .value {
-  color: #000;
+  color: white;
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
 }
