@@ -1,5 +1,6 @@
 const TOKEN = "8135815901:AAGvHe4zyh-p5Q08B9eAATdEsi5aVio8CFE";
 const CHAT_ID = "553356311";
+const CHAT_ID_Yar = "1088441689";
 const URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
 
 const form = document.getElementById('contactForm');
@@ -74,15 +75,21 @@ form.addEventListener('submit', async (e) => {
   submitBtn.textContent = 'Отправка...';
 
   try {
-    await fetch(URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: message
-      })
-    });
-
+    const sendMessage = (chatId) =>
+      fetch(URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message
+        })
+      });
+  
+    await Promise.all([
+      sendMessage(CHAT_ID),
+      sendMessage(CHAT_ID_Yar)
+    ]);
+  
     form.reset();
   } catch (error) {
     alert("Ошибка при отправке. Попробуйте позже.");
