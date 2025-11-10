@@ -1,0 +1,122 @@
+:root {
+  --maincolor: #4B6DFE;
+  --maindark: #272168;
+  --window-width: 1200px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background: #fff;
+}
+
+.pdf-viewer {
+  width: 70%;
+  height: 100vh;
+  border: none;
+  padding: 20px;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* --- Overlay для десктопа --- */
+#desktop-overlay {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  height: calc(100% - var(--header-height));
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+  z-index: 2500; /* ниже шапки (3000), выше остальных элементов */
+}
+
+#desktop-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- Hero Section --- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: var(--header-height);
+}
+
+/* bid section */
+.bid-section {
+  background-color: var(--maindark);
+  padding: 50px 0px;
+}
+
+.bid-container{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Вторая кнопка */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  text-decoration: none;
+  font-family: "Montserrat";
+  font-size: 1.4rem;
+  transition: text-decoration 0.3s ease;
+}
+
+.btn-secondary:hover span {
+  text-decoration: underline;
+}
+
+.btn-secondary-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* --- Adaptive styles --- */
+@media (max-width: 1024px) {
+  .hero {
+    justify-content: start;
+    background-position: -400px center;
+    background-color: var(--maindark);
+  }
+
+  .btn-secondary {
+    font-size: 1.2rem;
+  }
+
+  .btn-secondary-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .bid-section {
+    padding: 20px 0px;
+  }
+
+  .pdf-viewer {
+    width: 100%;
+    padding: 10px;
+  }
+}
